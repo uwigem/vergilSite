@@ -348,6 +348,8 @@ font-size: 20px;
 
 .jump:before {
   display: block;
+  margin-top: -62px;
+  height: 62px;
   content: " ";
   visibility: hidden;
 }
