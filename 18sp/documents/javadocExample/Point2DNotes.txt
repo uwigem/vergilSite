@@ -1,0 +1,19 @@
+Point2D Spec notes
+
+There are no constructors because constructors cannot be declared in 
+interfaces
+
+In the method signatures where the return value or parameters were obvious,
+I did not restate them with the @param or @return tags
+
+I specified the pre and postconditions of the set precision methods, with the
+@pre and @post tags
+
+The set precision methods say "up to" that level of precision, but makes no 
+guarantees that the actual precision will not be less. i.e. the user is setting
+a max level of precision, which will make it easier to read
+
+I put the @Override tag before methods that are being overrided from their 
+previous implementation. Methods can be overrided without this, but if you put
+it there, Java will throw an error if a method was **not** overriden, meaning
+that you made a mistake in thinking that method was already defined somewhere else
