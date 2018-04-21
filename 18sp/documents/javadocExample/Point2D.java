@@ -1,4 +1,4 @@
-package pacman;
+package javadocExample;
 
 /** This is a class that represents a two dimensional point
 */
