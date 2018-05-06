@@ -16,7 +16,7 @@ r = te.loada("""
 # This model describes simple central dogma
     J0: -> M ; a_m
     J1: M -> ; d_m*M
-    J2: -> P ; a_p*M
+    J2: M -> P ; a_p*M
     J3: P -> ; d_p*P
     
     # Parameters
@@ -121,37 +121,37 @@ r = te.loada("""
 
 # Make a model of the first linear pathway
 
-    J0:
+    #J0:
     
     # Parameters
     
     # Initial values
     
-""""
+"""
 )
 
 a = te.loada("""
 
 # Make a model of the second pathway with negative feedback.
 
-    J0:
+    #J0:
     
     # Parameters
     
     # Initial values
     
-""""
+"""
 )
 
 b = te.loada("""
 
 # Make a model of the third complex pathway.
 
-    J0:
+    #J0:
     
     # Parameters
     
     # Initial values
     
-""""
+"""
 )
