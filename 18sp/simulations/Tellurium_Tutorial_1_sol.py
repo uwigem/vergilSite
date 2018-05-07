@@ -1,5 +1,12 @@
 # -*- coding: utf-8 -*-
 """
+Created on Mon May 07 13:42:47 2018
+
+@author: Yoshi
+"""
+
+# -*- coding: utf-8 -*-
+"""
 Created on Thu May 03 15:36:48 2018
 
 @author: Yoshi
@@ -133,33 +140,41 @@ plt.xlabel("Protein value at Steady-state")
 #### Assume boundary species are set to 10 counts.
 #### Assume initial values of floating species are at 0.
 
-r = te.loada("""
 # Make a model of the first linear pathway
 # https://uwigem.zulipchat.com/user_uploads/2720/SzkuyF_kTaqq4FNetBtUUz2v/pasted_image.png
-
-    #J0: $X0 -> S1 ; v_1 * X0    #you can put a $ sign before a species to set it to a boundary species (concentration doesn't change)
-    
-    
-    
-    #J__: S4 -> $X1 ;  v_5*S4 
+r = te.loada("""
+    J0: $X0 -> S1 ; v_1 * X0    #you can put a $ sign before a species to set it to a boundary species (concentration doesn't change)
+    J1: S1 -> S2 ; v_2 * S1
+    J2: S2 -> S3 ; v_3 * S2 
+    J3: S3 -> S4 ; v_4 * S3
+    J4: S4 -> $X1 ; v_5*S4 
     
     # Parameters
+    v_1 = 1 
+    v_2 = 1
+    v_3 = 1
+    v_4 = 1
+    v_5 = 1
     
     # Initial values
-    
+    X0 = 10
+    X1 = 10
+    S1 = 0
+    S2 = 0
+    S3 = 0
+    S4 = 0
 """
 )
 r.reset()
 result = r.simulate(0,20,200)
 r.plot()
-
-
+    
 #%% 
 a = te.loada("""
 # Make a model of the second pathway with negative feedback.
 # https://uwigem.zulipchat.com/user_uploads/2720/SzkuyF_kTaqq4FNetBtUUz2v/pasted_image.png
 
-    #J0:
+    J0: 
     
     # Parameters
     
