@@ -173,13 +173,22 @@ r.plot()
 a = te.loada("""
 # Make a model of the second pathway with negative feedback.
 # https://uwigem.zulipchat.com/user_uploads/2720/SzkuyF_kTaqq4FNetBtUUz2v/pasted_image.png
-
-    J0: 
-    
+    J0: $X0 -> S1 ; v_1 * X0 * (K/(K+S3))
+    J1: S1 -> S2 ; v_2 * S1
+    J2: S2 -> S3 ; v_3 * S1 
+    J3: S3 -> $X1 ; v_4 * S1 
     # Parameters
-    
+    K = 1
+    v_1 = 1
+    v_2 = 1
+    v_3 = 1
+    v_4 = 1
     # Initial values
-    
+    X0 = 10
+    X1 = 10
+    S1 = 0
+    S2 = 0
+    S3 = 0
 """
 )
 a.reset()    

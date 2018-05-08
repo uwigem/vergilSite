@@ -126,6 +126,9 @@ plt.figure(5)
 plt.hist(P_ss)
 plt.xlabel("Protein value at Steady-state")
 
+
+## What are the nullclines of M and P? In other words, graph M when dP/dt = 0 and P when dM/dt = 0.
+
 #%%%%%%%%%% Metabolic networks
 
 #### Assume there is no external degradation unless specified.
@@ -159,7 +162,7 @@ a = te.loada("""
 # Make a model of the second pathway with negative feedback.
 # https://uwigem.zulipchat.com/user_uploads/2720/SzkuyF_kTaqq4FNetBtUUz2v/pasted_image.png
 
-    #J0:
+    #J0: $X0 -> S1 ; v_1 * X0 * (K/(K+S3))
     
     # Parameters
     
