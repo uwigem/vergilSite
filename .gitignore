@@ -1,2 +1,5 @@
 #Don't want to try to upload this huge ass binary PDFs to github
 Get_Schooled/*
+
+#Get these Java binaries outta here
+*.class
