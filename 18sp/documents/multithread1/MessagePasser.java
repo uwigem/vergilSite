@@ -9,16 +9,17 @@ public class MessagePasser {
     childThread.start();
     
     int i = 0;
-    while(message.i < 0 && i < lorem_ipsum.length()) {
+    while(i < lorem_ipsum.length()) {
       synchronized(message) {
         message.wait(10);
+        if (message.i >= 0) {
+          System.out.println("Parent received child message "+message.i);
+          break;
+        }
       }
       System.out.print(lorem_ipsum.charAt(i));
       i++;
     }
-    
-    // Print from the parent
-    System.out.println("\nChild process finished and sent message: "+message.i);
   }
   
   public static class Child extends Thread {
