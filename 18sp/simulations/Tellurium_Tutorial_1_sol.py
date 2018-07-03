@@ -15,9 +15,8 @@ Created on Thu May 03 15:36:48 2018
 import numpy as np
 import matplotlib.pyplot as plt
 import tellurium as te
-import roadrunner
-import antimony
 import time
+import structural as st
 
 r = te.loada("""
 # This model describes simple central dogma
@@ -151,9 +150,9 @@ r = te.loada("""
     
     # Parameters
     v_1 = 1 
-    v_2 = 1
-    v_3 = 1
-    v_4 = 1
+    v_2 = 3
+    v_3 = 5
+    v_4 = 2
     v_5 = 1
     
     # Initial values
@@ -168,30 +167,32 @@ r = te.loada("""
 r.reset()
 result = r.simulate(0,20,200)
 r.plot()
-    
+r.getSteadyStateValues()
+
 #%% 
 a = te.loada("""
 # Make a model of the second pathway with negative feedback.
 # https://uwigem.zulipchat.com/user_uploads/2720/SzkuyF_kTaqq4FNetBtUUz2v/pasted_image.png
     J0: $X0 -> S1 ; v_1 * X0 * (K/(K+S3))
     J1: S1 -> S2 ; v_2 * S1
-    J2: S2 -> S3 ; v_3 * S1 
-    J3: S3 -> $X1 ; v_4 * S1 
+    J2: S2 -> S3 ; v_3 * S2 
+    J3: S3 -> $X1 ; v_4 * S3 
     # Parameters
-    K = 1
+    K = 10
     v_1 = 1
     v_2 = 1
     v_3 = 1
     v_4 = 1
     # Initial values
-    X0 = 10
+    X0 = 5
     X1 = 10
     S1 = 0
     S2 = 0
     S3 = 0
 """
 )
-a.reset()    
+a.reset()
+a.draw()
 result = a.simulate(0,30,200)
 a.plot()
     
@@ -202,14 +203,35 @@ b = te.loada("""
 # Make a model of this third complex pathway.
 # https://uwigem.zulipchat.com/user_uploads/2720/396rJGYDRJRoTiciWWQ7O-_V/pasted_image.png
 
-    #J0:
+    J0: -> S1 ; v1
+    J1: S1 -> S2 ; v2*S1
+    J2: S2 -> ; v3*S2
+    J3: S3 -> S1 ; v4*S3
+    J4: S3 -> S2 ; v5*S3
+    J5: -> S3 ; v6
     
     # Parameters
+    v1 = 1
+    v2 = 1
+    v3 = 1
+    v4 = 1
+    v5 = 1
+    v6 = 1
     
     # Initial values
+    S1 = 0
+    S2 = 0
+    S3 = 0
     
 """
 )
 b.reset()
 result = b.simulate(0,30,200)
 b.plot()
+
+ls = st.LibStructural()
+ls.loadSBMLFromString(b.getSBML())
+print(ls.getSummary())
+print(ls.getTestDetails())
+print ls.getStoichiometryMatrix()
+print ls.getElementaryModes()

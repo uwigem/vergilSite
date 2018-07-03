@@ -81,7 +81,7 @@ for i in d_m:
         J3: P -> ; d_p*P
         
         # Parameters
-        a_m = 10;
+        a_m = 10
         a_p = 500; d_p = 0.05
         
         # Initial values
@@ -127,7 +127,10 @@ plt.hist(P_ss)
 plt.xlabel("Protein value at Steady-state")
 
 
-## What are the nullclines of M and P? In other words, graph M when dP/dt = 0 and P when dM/dt = 0.
+## What are the nullclines of M and P? 
+#In other words, graph M when dP/dt = 0 
+#and P when dM/dt = 0.
+
 
 #%%%%%%%%%% Metabolic networks
 
