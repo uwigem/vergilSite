@@ -3,3 +3,5 @@ Get_Schooled/*
 
 #Get these Java binaries outta here
 *.class
+
+*.swp
